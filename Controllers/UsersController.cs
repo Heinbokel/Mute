@@ -34,7 +34,7 @@ namespace Mute.controllers
         /// <param name="UserId">The ID of the user.</param>
         /// <returns>The found User, or a 204.</returns>
         [HttpGet("{UserId}", Name = "User")]
-        public User GetUser(string UserId)
+        public User GetUser(int UserId)
         {
             User? user = _usersRepository.GetUserByUserId(UserId);
             if (user != null) {
@@ -64,7 +64,7 @@ namespace Mute.controllers
         /// </summary>
         /// <param name="userID">The userID to look up tags for.</param>
         /// <returns>The list of tags to return.</returns>
-        private List<Tag> GetTagsByUserId(string userID) {
+        private List<Tag> GetTagsByUserId(int userID) {
             return this._tagsRepository.GetTagsByUserId(userID);
         }
 

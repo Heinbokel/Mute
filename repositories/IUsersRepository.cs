@@ -13,7 +13,7 @@ namespace Mute.repositories {
         /// </summary>
         /// <param name="userId">The user ID of the user to retrieve.</param>
         /// <returns>The user, or null if not found.</returns>
-        public User? GetUserByUserId(string userId);
+        public User? GetUserByUserId(int userId);
 
         /// <summary>
         /// Retrieves all of the users.

@@ -13,7 +13,7 @@ namespace Mute.repositories {
         /// </summary>
         /// <param name="userID">The user ID that the tags are assigned to.</param>
         /// <returns>The list of tags assigned to the given user.</returns>
-        public List<Tag> GetTagsByUserId(string userID);
+        public List<Tag> GetTagsByUserId(int userID);
 
     }
 

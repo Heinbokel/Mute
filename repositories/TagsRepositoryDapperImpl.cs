@@ -40,7 +40,7 @@ namespace Mute.repositories {
         /// </summary>
         /// <param name="userID">The user ID the tags are assigned to.</param>
         /// <returns>The list of tags belonging to the user.</returns>
-        public List<Tag> GetTagsByUserId(string userID) {
+        public List<Tag> GetTagsByUserId(int userID) {
             // Defines the parameters that will be sent into the SQL.
             var Params = new {
                 USER_ID = userID

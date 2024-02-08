@@ -42,7 +42,7 @@ namespace Mute.repositories {
         /// </summary>
         /// <param name="userId"></param>
         /// <returns>The user if found, or null.</returns>
-        public User? GetUserByUserId(string userID)
+        public User? GetUserByUserId(int userID)
         {
             // Defines the parameters that will be sent into the SQL.
             var Params = new {

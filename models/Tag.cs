@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Mute.models
 {
     /// <summary>
@@ -6,7 +8,7 @@ namespace Mute.models
     /// <author>Bob Heinbokel</author>
     public class Tag
     {
-        public string TagId { get; set; }
+        public int TagId { get; set; }
         public string TagName { get; set; }
 
     }
