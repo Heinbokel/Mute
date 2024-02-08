@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 // Dependency injection mappings
 builder.Services.AddScoped<IDbConnection>(_ => new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IUsersRepository, UsersRepositoryDapperImpl>();
+builder.Services.AddScoped<ITagsRepository, TagsRepositoryDapperImpl>();
 
 var app = builder.Build();
 

@@ -15,14 +15,17 @@ namespace Mute.controllers
     {
 
         private IUsersRepository _usersRepository;
+        private ITagsRepository _tagsRepository;
 
         /// <summary>
         /// Constructor for dependency injection.
         /// </summary>
         /// <param name="usersRepository">The IUsersRepository to use.</param>
-        public UsersController(IUsersRepository usersRepository)
+        /// <param name="tagsRepository">The ITagsRepository to use.</param>
+        public UsersController(IUsersRepository usersRepository, ITagsRepository tagsRepository)
         {
             this._usersRepository = usersRepository;
+            this._tagsRepository = tagsRepository;
         }
 
         /// <summary>
@@ -33,7 +36,11 @@ namespace Mute.controllers
         [HttpGet("{UserId}", Name = "User")]
         public User GetUser(string UserId)
         {
-            return _usersRepository.GetUserByUserId(UserId);
+            User? user = _usersRepository.GetUserByUserId(UserId);
+            if (user != null) {
+                user.UserTags = this.GetTagsByUserId(UserId);
+            }
+            return user;
         }
 
         /// <summary>
@@ -43,7 +50,22 @@ namespace Mute.controllers
         [HttpGet("", Name = "Users")]
         public List<User> GetUsers()
         {
-            return _usersRepository.GetUsers();
+            List<User> users = _usersRepository.GetUsers();
+
+            foreach(User user in users) {
+                user.UserTags = this.GetTagsByUserId(user.UserID);
+            }
+
+            return users;
+        }
+
+        /// <summary>
+        /// Retrieves the tags for a given user.
+        /// </summary>
+        /// <param name="userID">The userID to look up tags for.</param>
+        /// <returns>The list of tags to return.</returns>
+        private List<Tag> GetTagsByUserId(string userID) {
+            return this._tagsRepository.GetTagsByUserId(userID);
         }
 
     }
