@@ -1,7 +1,7 @@
 using Mute.models;
 using Microsoft.EntityFrameworkCore;
 
-namespace DotnetAPI.Repositories.Configuration {
+namespace Mute.repositories.configuration {
 
     /// <summary>
     /// Database context for Entity Framework.
@@ -32,6 +32,10 @@ namespace DotnetAPI.Repositories.Configuration {
                 optionsBuilder 
                     .UseSqlServer(_config.GetConnectionString("DefaultConnection"), 
                     optionsBuilder => optionsBuilder.EnableRetryOnFailure());
+
+                // Enable EF Core logging (logs the SQL it generates and more)
+                optionsBuilder.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+
             }
         }
 

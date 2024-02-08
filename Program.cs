@@ -1,7 +1,7 @@
 using System.Data;
-using DotnetAPI.Repositories.Configuration;
 using Microsoft.Data.SqlClient;
 using Mute.repositories;
+using Mute.repositories.configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,7 @@ builder.Services.AddSwaggerGen();
 // Dependency injection mappings
 builder.Services.AddScoped<DataContextEF>();
 builder.Services.AddScoped<IDbConnection>(_ => new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IUsersRepository, UsersRepositoryDapperImpl>();
+builder.Services.AddScoped<IUsersRepository, UsersRepositoryEFImpl>();
 builder.Services.AddScoped<ITagsRepository, TagsRepositoryDapperImpl>();
 
 var app = builder.Build();
